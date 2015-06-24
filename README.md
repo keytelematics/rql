@@ -197,8 +197,7 @@ For example:
 Licensing
 --------
 
-This RQL implementation is part of APS Standard, and therefore is licensed under the
- BSD license.
+This RQL implementation is part of APS JavaScript SDK and licensed under the BSD license.
 
 Project Links
 ------------
