@@ -98,9 +98,9 @@ define(["exports", "./parser"], function(exports, parser){
 	function query(quer, options, target){
 		options = options || {};
 		quer = parseQuery(quer, options.parameters);
-		function t(){}
-		t.prototype = exports.operators;
-		var operators = new t();
+		function T(){}
+		T.prototype = exports.operators;
+		var operators = new T();
 		// inherit from exports.operators
 		for(var i in options.operators)
 			operators[i] = options.operators[i];
@@ -278,13 +278,9 @@ define(["exports", "./parser"], function(exports, parser){
 			var args = arguments;
 			var argc = arguments.length;
 			return each(this, function(object, emit){
-				var selected = {};
-				for (var i in object) if (object.hasOwnProperty(i)) {
-					selected[i] = object[i];
-				}
-				for(var i = 0; i < argc; i++) {
-					delete selected[args[i]];
-				}
+				var selected = {}, i;
+				for (i in object) if (object.hasOwnProperty(i))	selected[i] = object[i];
+				for(i = 0; i < argc; i++) delete selected[args[i]];
 				emit(selected);
 			});
 		},
@@ -396,15 +392,15 @@ define(["exports", "./parser"], function(exports, parser){
 			var al = aggregates.length;
 			var newResults = [];
 			for(var key in distinctObjects){
-				var arrayForKey = distinctObjects[key];
-				var newObject = {};
-				for(var i = 0; i < dl;i++){
+				var arrayForKey = distinctObjects[key],
+					newObject = {},
+					i;
+				for(i = 0; i < dl;i++){
 					var property = distinctives[i];
 					newObject[property] = arrayForKey[0][property];
 				}
-				for(var i = 0; i < al;i++){
-					var aggregate = aggregates[i];
-					newObject[i] = aggregate.call(arrayForKey);
+				for(i = 0; i < al;i++){
+					newObject[i] = aggregates[i].call(arrayForKey);
 				}
 				newResults.push(newObject);
 			}
@@ -440,19 +436,19 @@ define(["exports", "./parser"], function(exports, parser){
 	};
 	function reducer(func){
 		return function(property){
-			var result = this[0];
+			var result = this[0], i, l;
 			if(property){
 				result = result && result[property];
-				for(var i = 1, l = this.length; i < l; i++) {
+				for(i = 1, l = this.length; i < l; i++) {
 					result = func(result, this[i][property]);
 				}
 			}else{
-				for(var i = 1, l = this.length; i < l; i++) {
+				for(i = 1, l = this.length; i < l; i++) {
 					result = func(result, this[i]);
 				}
 			}
 			return result;
-		}
+		};
 	}
 	exports.filter = filter;
 	exports.evaluateProperty = evaluateProperty;

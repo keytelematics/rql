@@ -257,6 +257,6 @@ define(["exports"], function(exports){
 	exports.Query = function(){
 		this.name = "and";
 		this.args = [];
-	}
+	};
 	return exports;
 });

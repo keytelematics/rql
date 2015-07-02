@@ -14,9 +14,9 @@
 ({define:typeof define!="undefined"?define:function(deps, factory){module.exports = factory(exports, require("./parser"), require("./util/each"));}}).
 define(["exports", "./parser", "./util/each"], function(exports, parser, each){
 
-var parseQuery = parser.parseQuery;
+var parseQuery = parser.parseQuery, when;
 try{
-	var when = require("promised-io/promise").when;
+	when = require("promised-io/promise").when;
 }catch(e){
 	when = function(value, callback){callback(value)};
 }
@@ -66,7 +66,7 @@ function queryToString(part) {
 				].join("");
 		}
 		return exports.encodeValue(part);
-};
+}
 
 function encodeString(s) {
 		if (typeof s === "string") {
