@@ -4,8 +4,8 @@
  * An implementation of RQL for JavaScript arrays. For example:
  * require("./js-array").query("a=3", {}, [{a:1},{a:3}]) -> [{a:3}]
  */
-({define:typeof define!="undefined"?define:function(deps, factory){module.exports = factory(exports, require("./parser"));}}).
-define(["exports", "./parser"], function(exports, parser){
+({define:typeof define!="undefined"?define:function(deps, factory){module.exports = factory(exports, require("./parser"), require("./util/each"));}}).
+define(["exports", "./parser", "./util/each"], function(exports, parser, each){
 
 	var parseQuery = parser.parse,
 		stringify = JSON.stringify;
@@ -62,23 +62,6 @@ define(["exports", "./parser"], function(exports, parser){
 		for(var i = 0, l = array.length; i < l; i++){
 			if(array[i] === item) return true;
 		}
-	}
-
-	function each(array, callback){
-		var emit, result;
-		if (callback.length > 1) {
-			// can take a second param, emit
-			result = [];
-			emit = function(value){
-				result.push(value);
-			};
-		}
-		for(var i = 0, l = array.length; i < l; i++){
-			if(callback(array[i], emit)){
-				return result || true;
-			}
-		}
-		return result;
 	}
 
 	function evaluateProperty(object, property){
