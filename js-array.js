@@ -87,7 +87,7 @@ define(["exports", "./parser", "./util/each"], function(exports, parser, each){
 		// inherit from exports.operators
 		for(var i in options.operators)
 			operators[i] = options.operators[i];
-		window.op = function(name){
+		op = function(name){
 			return operators[name]||exports.missingOperator(name);
 		};
 		var parameters = options.parameters || [];
@@ -148,7 +148,7 @@ define(["exports", "./parser", "./util/each"], function(exports, parser, each){
 							case "empty": 	return stringify("");
 							case "not":		return value && value.args && value.args.length > 0 ? queryToJS(value.args[0]) : "";
 							default:
-								return "(function(){return window.op('" + value.name + "').call(this" +
+								return "(function(){return op('" + value.name + "').call(this" +
 									(value && value.args && value.args.length > 0 ? (", " + value.args.map(queryToJS).join(",")) : "") +
 									")})";
 						}
