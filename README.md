@@ -20,6 +20,10 @@ Such that this can be used in URIs like:
 
     http://example.org/data?foo=3
 
+# Demo page (Limited functionality)
+
+https://doc.apsstandard.org/7.2/apsfiddle/#sWLwhOfZrG
+
 # JavaScript Library
 
 Using the JavaScript library we can construct queries

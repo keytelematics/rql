@@ -1,0 +1,32 @@
+{
+	"name": 		"aps-rql",
+	"version": 		"1.0.2",
+	"homepage": 	"https://github.com/odin-public/rql/",
+	"description":	"Query language for the web, NoSQL, with APS extensions",
+
+	"author": 		"Kris Zyp",
+
+	"contributors": [{
+		"name": 	"Evgeny Uspenskiy",
+		"email": 	"burashka-lcme@yandex.ru"
+	}],
+
+	"maintainers": [{
+		"name": 	"Evgeny Uspenskiy",
+		"email": 	"burashka-lcme@yandex.ru"
+	}],
+
+	"repository": {
+		"type": 	"git",
+		"url":		"https://github.com/odin-public/rql.git"
+	},
+
+	"bugs": {
+		"url":		"https://github.com/odin-public/rql/issues"
+	},
+
+	"licenses": [{
+			"type":		"MIT",
+			"url":		"https://github.com/odin-public/rql/blob/master/LICENSE"
+	}]
+}
