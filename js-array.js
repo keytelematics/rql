@@ -7,6 +7,14 @@
 ({define:typeof define!="undefined"?define:function(deps, factory){module.exports = factory(exports, require("./parser"), require("./util/each"));}}).
 define(["exports", "./parser", "./util/each"], function(exports, parser, each){
 
+	function isString(it){
+		// summary:
+		//		Return true if it is a String
+		// it: anything
+		//		Item to test.
+		return (typeof it == 'string' || it instanceof String);
+	}
+
 	var parseQuery = parser.parse,
 		stringify = JSON.stringify;
 
@@ -183,8 +191,11 @@ define(["exports", "./parser", "./util/each"], function(exports, parser, each){
 			var terms = [],
 				reg = /\./gi;
 			for(var i = 0; i < arguments.length; i++){
-				var sortAttribute = arguments[i],
-					firstChar = sortAttribute.charAt(0),
+				var sortAttribute = arguments[i];
+
+				if (!isString(sortAttribute)) sortAttribute = sortAttribute.toString();
+
+				var	firstChar = sortAttribute.charAt(0),
 					term = {attribute: sortAttribute, ascending: true};
 				if (firstChar == "-" || firstChar == "+") {
 					if(firstChar == "-"){
