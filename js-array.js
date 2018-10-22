@@ -163,8 +163,20 @@ define(["exports", "./parser", "./util/each"], function(exports, parser, each){
 					}
 				}
 			}else{
-				if(typeof value === "string")
-					return stringify(value);
+				
+				if (typeof value === "string") {
+					switch (value) {
+						case "true":
+							return true;
+						case "false":
+							return false;
+						case "null":
+							return null;
+						default: 
+							return stringify(value);
+					}
+				}
+					
 				if(value.constructor === Date)
 					return value.valueOf();
 				return value;
