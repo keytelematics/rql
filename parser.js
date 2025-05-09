@@ -193,7 +193,7 @@ define(["exports"], function(exports){
 	};
 	function stringToValue(string, parameters){
 		var converter = exports.converters["default"];
-		if(string.charAt(0) === "$"){
+		if(parameters && string.charAt(0) === "$"){
 			var param_index = parseInt(string.substring(1), 10) - 1;
 			return param_index >= 0 && parameters ? parameters[param_index] : undefined;
 		}

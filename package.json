@@ -1,6 +1,6 @@
 {
 	"name": 		"aps-rql",
-	"version": 		"1.0.3",
+	"version": 		"1.0.4",
 	"homepage": 	"https://github.com/odin-public/rql/",
 	"description":	"Query language for the web, NoSQL, with APS extensions",
 
